@@ -88,6 +88,7 @@ history = model.fit(
         verbose=1
     )
 
+#Test scores
 test_loss, test_mae = model.evaluate(X_test, y_test, verbose=2)
 print(f'Test MAE: {test_mae}')
 
