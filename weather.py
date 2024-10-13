@@ -21,6 +21,7 @@ async def getweather() -> None:
          for hourly in daily:
             print(f' --> {hourly!r}')
 
+
 if __name__ == '__main__':
   # see https://stackoverflow.com/questions/45600579/asyncio-event-loop-is-closed-when-getting-loop
   # for more details
