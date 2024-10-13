@@ -8,8 +8,8 @@ from tensorflow.keras import regularizers
 import matplotlib.pyplot as plt
 import numpy as np
 
-data = pd.read_csv('spreadsheets/2016_2024_Data.csv')
-data = data.dropna(subset=['Latitude', 'Longitude', 'Year', 'Normalized_Health_Score'])
+data = pd.read_csv('uber.csv')
+data = data.dropna(subset=['Latitude', 'Longitude', 'Year', 'Price'])
 
 
 data['latitude_rad'] = np.deg2rad(data['Latitude'])
@@ -21,18 +21,18 @@ data['longitude_sin'] = np.sin(data['longitude_rad'])
 data['longitude_cos'] = np.cos(data['longitude_rad'])
 
 cycle = 5
-data['Year_sin'] = np.sin(2 * np.pi * data['Year'] / cycle)
-data['Year_cos'] = np.cos(2 * np.pi * data['Year'] / cycle)
+data['Price_sin'] = np.sin(2 * np.pi * data['Price'] / cycle)
+data['Price_cos'] = np.cos(2 * np.pi * data['Price'] / cycle)
 
 
 feature_columns = [
         'latitude_sin', 'latitude_cos',
         'longitude_sin', 'longitude_cos',
-        'Year_sin', 'Year_cos'
+        'Price_sin', 'Price_cos'
     ]
 
 X = data[feature_columns].values
-y = data['Normalized_Health_Score'].values
+y = data['Price_value'].values
 
 X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
@@ -95,8 +95,8 @@ model.save("geospatial_neural_net_model.keras")
 
     # 9. Make predictions
 predictions = model.predict(X_test)
-print("Predicted Health Scores:", predictions.flatten())
-print("Actual Health Scores:", y_test)
+print("Predicted Cost of Ride:", predictions.flatten())
+print("Actual Price of Ride:", y_test)
 
 # def preprocess_data(lat_data,long_data,year ):
 #     latitude_rad = np.deg2rad(lat_data)
