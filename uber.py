@@ -2,7 +2,7 @@ from uber_rides.session import Session
 from uber_rides.client import UberRidesClient
 
 # creating session
-session = Session(server_token=<TOKEN>)
+session = Session(server_token='x4PKxjtENkAL_qWGKd4t5gWdhbYzB4gg')
 client = UberRidesClient(session)
 
 # requesting estimation of price
