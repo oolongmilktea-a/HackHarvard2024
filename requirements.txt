@@ -1,0 +1,8 @@
+python_weather
+asyncio
+os
+pandas
+numpy
+scikit-learn
+urllib
+uber-rides
